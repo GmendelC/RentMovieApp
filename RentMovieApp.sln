@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2006
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentMovieApp", "RentMovieApp\RentMovieApp.csproj", "{ABD692D7-2798-4678-994A-E1F62EDC7D33}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B1954F78-94AB-4950-B5BE-7527938EC9D9} = {B1954F78-94AB-4950-B5BE-7527938EC9D9}
+		{E7E6AE7E-A946-4DDF-ACA5-A9ABE91EFD60} = {E7E6AE7E-A946-4DDF-ACA5-A9ABE91EFD60}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentMovieApp.Tests", "RentMovieApp.Tests\RentMovieApp.Tests.csproj", "{D3A33A70-5150-46E1-B44D-F58A65677169}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B1954F78-94AB-4950-B5BE-7527938EC9D9} = {B1954F78-94AB-4950-B5BE-7527938EC9D9}
+		{E7E6AE7E-A946-4DDF-ACA5-A9ABE91EFD60} = {E7E6AE7E-A946-4DDF-ACA5-A9ABE91EFD60}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{E7E6AE7E-A946-4DDF-ACA5-A9ABE91EFD60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{B1954F78-94AB-4950-B5BE-7527938EC9D9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E7E6AE7E-A946-4DDF-ACA5-A9ABE91EFD60} = {E7E6AE7E-A946-4DDF-ACA5-A9ABE91EFD60}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentalMovieBl", "RentalMovieBl\RentalMovieBl.csproj", "{1AEBC9D0-734E-400D-88BF-F65BE14FA074}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ABD692D7-2798-4678-994A-E1F62EDC7D33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABD692D7-2798-4678-994A-E1F62EDC7D33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABD692D7-2798-4678-994A-E1F62EDC7D33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABD692D7-2798-4678-994A-E1F62EDC7D33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3A33A70-5150-46E1-B44D-F58A65677169}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3A33A70-5150-46E1-B44D-F58A65677169}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3A33A70-5150-46E1-B44D-F58A65677169}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3A33A70-5150-46E1-B44D-F58A65677169}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7E6AE7E-A946-4DDF-ACA5-A9ABE91EFD60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7E6AE7E-A946-4DDF-ACA5-A9ABE91EFD60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7E6AE7E-A946-4DDF-ACA5-A9ABE91EFD60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7E6AE7E-A946-4DDF-ACA5-A9ABE91EFD60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1954F78-94AB-4950-B5BE-7527938EC9D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1954F78-94AB-4950-B5BE-7527938EC9D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1954F78-94AB-4950-B5BE-7527938EC9D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1954F78-94AB-4950-B5BE-7527938EC9D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AEBC9D0-734E-400D-88BF-F65BE14FA074}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AEBC9D0-734E-400D-88BF-F65BE14FA074}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AEBC9D0-734E-400D-88BF-F65BE14FA074}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AEBC9D0-734E-400D-88BF-F65BE14FA074}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {97696D2D-8331-4B80-8DFD-01ED764024CF}
+	EndGlobalSection
+EndGlobal
