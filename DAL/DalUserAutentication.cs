@@ -53,6 +53,7 @@ namespace DAL
             if (dbUser != null)
             {
                 HashUser(user);
+                user.ID = dbUser.ID;
                 return user.Password == dbUser.Password;
             }
             else

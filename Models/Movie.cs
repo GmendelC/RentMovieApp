@@ -23,6 +23,7 @@ namespace Models
 
         public EMovieCategory Category { get; set; }
 
+        [InverseProperty("ForMovie")]
         public virtual ICollection<MovieCopy> Copies { get; set; }
 
         [DataType(DataType.Currency)]

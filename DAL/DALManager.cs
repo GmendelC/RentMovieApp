@@ -34,7 +34,7 @@ namespace DAL
 
         public bool AddCopy(MovieCopy newCopy)
         {
-            if (newCopy == null || newCopy.ForMovie == null)
+            if (newCopy == null || (newCopy.ForMovie == null))
                 return false;
 
             if (Movies.Any(m => m.Id == newCopy.ForMovie.Id))
@@ -110,24 +110,28 @@ namespace DAL
 
         public bool RenturnCopy(MovieCopy rentCopy)
         {
-            RentHistory rentHistory = new RentHistory
-            {
-                RentDate = rentCopy.RentDate,
-                Copy = rentCopy,
-                RentReturn = DateTime.Now,
-                UserRent = rentCopy.UserRent
-            };
-
-            rentCopy.UserRent = null;
-            rentCopy.UserRentId = 0;
-            rentCopy.RentDate = default(DateTime);
-            rentCopy.ReturnDate = default(DateTime);
+            RentHistory rentHistory = new RentHistory { UserRent = rentCopy.UserRent, Copy = rentCopy };
 
             bool updateHistory = DbManipulation(rentHistory, h =>
             {
                 _db.Create(h);
                 return true;
             });
+
+            rentHistory.RentDate = rentCopy.RentDate.Value;
+            rentHistory.Copy = rentCopy;
+            rentHistory.RentReturn = DateTime.Now;
+            rentHistory.UserRent = rentCopy.UserRent;
+
+            updateHistory = DbManipulation(rentHistory, h =>
+            {
+                _db.Update(h);
+                return true;
+            });
+
+            rentCopy.RentDate = null;
+            rentCopy.ReturnDate = null;
+            rentCopy.UserRent = null;
 
             if (updateHistory)
             {
@@ -141,7 +145,14 @@ namespace DAL
                 return updateCopy;
             }
             else
+            {
+                DbManipulation(rentHistory, h =>
+                {
+                    _db.Delete(h);
+                    return false;
+                });
                 return false;
+            }
         }
 
         public bool UpdateMovie(Movie updateMovie)

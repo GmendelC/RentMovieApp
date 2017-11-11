@@ -57,22 +57,30 @@ namespace DAL.MovieRentContext
                 }
             });
 
+            context.SaveChanges();
+
+            var usersArray = new User[]
+            {
+                new User{Email= "1@1.com", Password =HashString("1")},
+                new User{Email= "adimstator@movie.com", Password =HashString("Password")},
+                new User{Email= "employee@movie.com", Password =HashString("Password")}
+            };
+
+            context.Users.AddRange(usersArray);
+
+            context.SaveChanges();
+
             foreach (var movie in context.Movies)
             {
                 context.Copies.AddRange(new MovieCopy[]
                 {
-                    new MovieCopy{ ForMovie = movie, Removed = false},
-                    new MovieCopy{ ForMovie = movie, Removed = false},
-                    new MovieCopy{ ForMovie = movie, Removed = false}
+                    new MovieCopy{ ForMovie = movie, Removed = false, RentDate = DateTime.Now, ReturnDate = null, UserRent= usersArray[0]},
+                    new MovieCopy{ ForMovie = movie, Removed = false, RentDate = null, ReturnDate = null},
+                    new MovieCopy{ ForMovie = movie, Removed = false, RentDate = null, ReturnDate = null}
                 });
             }
+            context.SaveChanges();
 
-            context.Users.AddRange(new User[]
-            {
-                new User{Email= "adimstator@movie.com", Password =HashString("Password")},
-                new User{Email= "employee@movie.com", Password =HashString("Password")}
-            });
-            
             // seed some movie and copies.
         }
 

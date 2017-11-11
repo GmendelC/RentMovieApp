@@ -1,0 +1,29 @@
+﻿@model Models.Movie
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="row">
+<div class="col-md-8">
+    <h2>
+        @Model.MovieName
+    </h2>
+
+    <img class="img-responsive" src="@Url.Action("GetMovieImage",  new { id = Model.Id })" />  
+    <p>
+        @Html.DisplayFor(model => model.Description)
+    </p>
+    <p>
+        @Html.DisplayNameFor(model => model.Price) :
+        @Html.DisplayFor(model => model.Price)
+    </p>
+</div>
+<div class="col-md-4" id="copiesContinner">
+    <h3> @Model.MovieName - Copies</h3>
+    @Html.Partial("_CopyPartial", Model.Copies)
+    @Html.ActionLink("AddCopy", "Create", "MovieCopy", new { id = Model.Id }, new { @class = "btn btn-primary btn-lg" }) 
+</div>
+<div class="class="row"">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary btn-lg" }) 
+    @Html.ActionLink("Back to List", "Index", "Home", null, new { @class = "btn btn-primary btn-lg" })
+</div>

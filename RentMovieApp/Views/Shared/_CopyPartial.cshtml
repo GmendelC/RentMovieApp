@@ -1,0 +1,44 @@
+﻿@model System.Collections.Generic.IEnumerable<Models.MovieCopy>
+
+<table class="table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Aviable</th>
+            <th>Remove</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var copy in Model.Where(c=> !c.Removed))
+        {
+            <tr>
+                <td>@copy.Id</td>
+                <td>
+                    @if (copy.UserRentId == null)
+                    {
+                        @Html.ActionLink("Rent Copy", "Rent", "MovieCopy", new { id = copy.Id }, new { @class = "btn btn-primary btn-lg" })
+                    }
+                    else if (User.Identity.Name == copy.UserRentId.ToString())
+                    {
+                        @Html.ActionLink("Return Copy", "Return", "MovieCopy", new { id = copy.Id }, new { @class = "btn btn-primary btn-lg" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Return Copy", "Return", "MovieCopy", new { id = copy.Id }, new { @class = "btn btn-primary btn-lg disabled" })
+                    }
+                </td>
+                <td>
+                    @if (copy.UserRentId == null)
+                    {
+                        @Html.ActionLink("Remove", "Delete", "MovieCopy", new { id = copy.Id }, new { @class = "btn btn-primary btn-lg" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Remove", "Delete", "MovieCopy", new { id = copy.Id }, new { @class = "btn btn-primary btn-lg disabled" })
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

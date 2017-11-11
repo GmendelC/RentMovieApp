@@ -1,0 +1,17 @@
+﻿@model System.Collections.Generic.IEnumerable<Models.Movie>
+
+@foreach (var movie in Model)
+{
+    <div class="row">
+        <h2>@movie.MovieName <small> @movie.Category</small></h2>
+        <div class="col-md-8">
+            <p>
+                @movie.Description
+            </p>
+            <a href="/Movie/Details/@movie.Id" class="btn btn-primary btn-lg">Go to page</a>
+        </div>
+        <div class="col-md-4">
+            <img class="img-responsive" src="@Url.Action("GetMovieImage", "Movie", new { id = movie.Id })" />
+        </div>
+    </div>
+}

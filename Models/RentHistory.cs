@@ -11,14 +11,20 @@ namespace Models
     
     public class RentHistory
     {
-        [Key, Column(Order = 0)]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+
+        [Required]
         public virtual MovieCopy Copy { get; set; }
 
-        [Key, Column(Order = 1)]
+        [Required]
         public virtual User UserRent { get; set; }
 
-        public DateTime RentDate { get; set; }
-        
-        public DateTime RentReturn { get; set; }
+        [DataType(DataType.DateTime)]
+        public DateTime? RentDate { get; set; }
+
+        [DataType(DataType.DateTime)]
+        public DateTime? RentReturn { get; set; }
     }
 }

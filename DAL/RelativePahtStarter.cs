@@ -13,7 +13,7 @@ namespace DAL
         public static void ChangeDataDirectoryToSolutionFolder()
         {
             // Change the variable of dataDirectory to SolutionFolder Path
-
+            // not work
             string currentDirectory = Environment.CurrentDirectory;
 
             // to do in while to search diretory of name RentMovieApp

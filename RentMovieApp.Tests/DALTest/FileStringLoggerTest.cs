@@ -80,7 +80,7 @@ namespace RentMovieApp.Tests.DALTest
         [TestMethod]
         public void LoggTest()
         {
-            FileStringLogger defaltLogger = new FileStringLogger();
+            FileStringLogger defaltLogger = new FileStringLogger(@"C:\USERS\COHENFAMILY\DESKTOP\RENTMOVIEAPP\DAL\Log.txt");
             string[] lines = { $"Test line 1 {DateTime.Now}", "Test line 2 {DateTime.Now}" };
 
             defaltLogger.Log(lines[0]);

@@ -15,23 +15,26 @@ namespace Models
         public int Id { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime RentDate { get; set; }
+        public DateTime? RentDate { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime ReturnDate { get; set; }
+        public DateTime? ReturnDate { get; set; }
 
         // this field infor if this copy was removed from rent,
         // Cant to remove copy or movie from data base because the history.
         
-        // In future you can do clean data base to rmove all old movies
+        // In future you can do clean data base to remove all old movies
         // Not aplicate
         public bool Removed { get; set; }
 
+        public int ForMovieId { get; set; }
+
+        [ForeignKey("ForMovieId")]
         public virtual Movie ForMovie { get; set; }
 
         [ForeignKey("UserRentId")]
         public virtual User UserRent { get; set; }
 
-        public int UserRentId { get; set; }
+        public int? UserRentId { get; set; }
     }
 }

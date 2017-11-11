@@ -1,0 +1,75 @@
+﻿@model Models.MovieCopy
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MovieCopy</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ForMovie.MovieName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ForMovie.MovieName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RentDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RentDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReturnDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReturnDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserRentId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserRentId)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <p>
+    @if (Model.UserRentId == null)
+    {
+        @Html.ActionLink("Rent Copy", "Rent", "MovieCopy", new { id = Model.Id }, new { @class = "btn btn-primary btn-lg" })
+    }
+    else if (User.Identity.Name == Model.UserRentId.ToString())
+    {
+        @Html.ActionLink("Return Copy", "Return", "MovieCopy", new { id = Model.Id }, new { @class = "btn btn-primary btn-lg" })
+    }
+    else
+    {
+        @Html.ActionLink("Return Copy", "Return", "MovieCopy", new { id = Model.Id }, new { @class = "btn btn-primary btn-lg disabled" })
+    }
+
+    @if (Model.UserRentId == null)
+    {
+        @Html.ActionLink("Remove", "Delete", "MovieCopy", new { id = Model.Id }, new { @class = "btn btn-primary btn-lg" })
+    }
+    else
+    {
+        @Html.ActionLink("Remove", "Delete", "MovieCopy", new { id = Model.Id }, new { @class = "btn btn-primary btn-lg disabled" })
+    }
+</p>
+<p>
+    @Html.ActionLink("Back to List", "Index", "Home", null, new { @class = "btn btn-primary btn-lg" })
+</p>
+</div>
+    

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,12 @@ namespace RentMovieApp.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            List<Movie> movies;
+            using (var managerRentalDB = MvcApplication.APP_IOC.ManagerRentalDB)
+            {
+                movies = managerRentalDB.Movies.ToList();
+            }
+            return View(movies);
         }
 
         public ActionResult About()

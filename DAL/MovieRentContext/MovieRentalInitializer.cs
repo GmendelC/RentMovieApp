@@ -13,7 +13,7 @@ namespace DAL.MovieRentContext
         {
             base.Seed(context);
 
-            context.Database.ExecuteSqlCommand("CREATE UNIQUE INDEX IX_User_Email ON User (Email)");
+            //context.Database.ExecuteSqlCommand("CREATE UNIQUE INDEX IX_User_Email ON User (Email)");
 
         }
     }

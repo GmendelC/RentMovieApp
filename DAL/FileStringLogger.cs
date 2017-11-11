@@ -15,7 +15,7 @@ namespace DAL
 
         public FileStringLogger(string paht = null)
         {
-            if (paht == null)
+            if (string.IsNullOrWhiteSpace(paht))
             {
                 string dataPath = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();
                 Path.Combine(dataPath, "Log.txt");
@@ -28,12 +28,7 @@ namespace DAL
         {
             if(!string.IsNullOrWhiteSpace(logMessage))
             {
-                if (!File.Exists(LoggerPath))
-                {
-                    File.Create(LoggerPath);
-                }
-
-                File.AppendAllText(LoggerPath, logMessage);
+                File.AppendAllText(LoggerPath, logMessage + "\n");
             }
         }
     }
