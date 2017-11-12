@@ -14,3 +14,6 @@ Copy 15 remove
 Copy 14 return
 Copy 14 rent
 Copy 14 return
+Copy 3 rent
+Copy 3 return
+Copy 4 return

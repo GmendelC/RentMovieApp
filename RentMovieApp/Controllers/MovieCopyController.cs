@@ -92,7 +92,7 @@ namespace RentMovieApp.Controllers.Home
             }
             return RedirectToAction("Details", "Movie", new { id = copy.ForMovie.Id });
         }
-        [HttpPost]
+        //[HttpPost]
         public PartialViewResult AjaxReturn(int id)
         {
             MovieCopy copy;

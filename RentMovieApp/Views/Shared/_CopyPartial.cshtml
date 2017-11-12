@@ -1,6 +1,6 @@
 ﻿@model System.Collections.Generic.IEnumerable<Models.MovieCopy>
 
-<table class="table-bordered">
+<table class="table-bordered" id="copy-table">
     <thead>
         <tr>
             <th>Id</th>
@@ -21,24 +21,24 @@
                     else if (User.Identity.Name == copy.UserRentId.ToString())
                     {
                         @Html.ActionLink("Return Copy", "Return", "MovieCopy", new { id = copy.Id }, new { @class = "btn btn-primary btn-lg" })
-                        @*@Ajax.ActionLink("Return Copy", "AjaxReturn", "MovieCopy", new { id = copy.Id },
+                        @Ajax.ActionLink("Return Copy", "AjaxReturn", "MovieCopy", new { id = copy.Id },
                             new AjaxOptions {
                                 HttpMethod = "Post",
-                                UpdateTargetId = "copiesContinner",
+                                UpdateTargetId = "copy-table",
                                 InsertionMode = InsertionMode.Replace,
-                            }, new { @class = "btn btn-primary btn-lg" })*@
+                            }, new { @class = "btn btn-primary btn-lg" })
                     }
                     else
                     {
-                        @Html.ActionLink("Return Copy", "Return", "MovieCopy", new { id = copy.Id }, new { @class = "btn btn-primary btn-lg" })
-                        @*@Ajax.ActionLink("Return Copy", "AjaxReturn", "MovieCopy", new { id = copy.Id },
+                        @Html.ActionLink("Return Copy", "Return", "MovieCopy", new { id = copy.Id }, new { @class = "btn btn-primary btn-lg disabled" })
+                        @Ajax.ActionLink("Return Copy", "AjaxReturn", "MovieCopy", new { id = copy.Id },
                         new AjaxOptions
                         {
                             HttpMethod = "Post",
-                            UpdateTargetId = "copiesContinner",
+                            UpdateTargetId = "copy-table",
                             InsertionMode = InsertionMode.Replace,
                         },
-                        new { @class = "btn btn-primary btn-lg disabled" })*@
+                        new { @class = "btn btn-primary btn-lg disabled" })
                     }
                 </td>
                 <td>
