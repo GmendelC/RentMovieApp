@@ -21,6 +21,7 @@ namespace RentMovieApp.Controllers.Home
             return View(copy);
         }
 
+        
         // Id movie of copy
         public ActionResult Create(int id)
         {
@@ -90,6 +91,20 @@ namespace RentMovieApp.Controllers.Home
                 managerRentalDB.RenturnCopy(copy);
             }
             return RedirectToAction("Details", "Movie", new { id = copy.ForMovie.Id });
+        }
+        [HttpPost]
+        public PartialViewResult AjaxReturn(int id)
+        {
+            MovieCopy copy;
+            MovieCopy[] copies;
+            using (var managerRentalDB = MvcApplication.APP_IOC.ManagerRentalDB)
+            {
+                copy = managerRentalDB.Copies.FirstOrDefault(c => c.Id == id);
+                managerRentalDB.RenturnCopy(copy);
+                copies = managerRentalDB.Copies
+                    .Where(c => c.ForMovieId == copy.ForMovieId).ToArray();
+            }
+            return PartialView("_CopyPartial", copies);
         }
     }
 }

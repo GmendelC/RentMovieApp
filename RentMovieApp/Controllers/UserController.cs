@@ -10,9 +10,8 @@ namespace RentMovieApp.Controllers
     public class UserController : Controller
     {
         // GET: User
-        public ActionResult Login(string returnUrl)
+        public ActionResult Login()
         {
-            ViewBag.ReturnUrl = returnUrl;
             User user = new User();
             return View(user);
         }
@@ -20,11 +19,11 @@ namespace RentMovieApp.Controllers
         // GET: User/Details/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(User user, string returnUrl)
+        public ActionResult Login(User user)
         {
             using (var userAutentication = MvcApplication.APP_IOC.UserAutenticationService)
                 if (userAutentication.Login(user))
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Index", "Home");
                 else
                 {
                     user.Password = null;

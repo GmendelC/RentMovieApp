@@ -18,11 +18,14 @@
         @Html.DisplayFor(model => model.Price)
     </p>
 </div>
-<div class="col-md-4" id="copiesContinner">
+<div class="col-md-4" >
     <h3> @Model.MovieName - Copies</h3>
-    @Html.Partial("_CopyPartial", Model.Copies)
+    <div id="copiesContinner">
+        @Html.Partial("_CopyPartial", Model.Copies)
+    </div>
     @Html.ActionLink("AddCopy", "Create", "MovieCopy", new { id = Model.Id }, new { @class = "btn btn-primary btn-lg" }) 
 </div>
+    </div>
 <div class="class="row"">
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary btn-lg" }) 
     @Html.ActionLink("Back to List", "Index", "Home", null, new { @class = "btn btn-primary btn-lg" })

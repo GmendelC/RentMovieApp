@@ -4,7 +4,7 @@
     <thead>
         <tr>
             <th>Id</th>
-            <th>Aviable</th>
+            <th>Available</th>
             <th>Remove</th>
         </tr>
     </thead>
@@ -21,10 +21,24 @@
                     else if (User.Identity.Name == copy.UserRentId.ToString())
                     {
                         @Html.ActionLink("Return Copy", "Return", "MovieCopy", new { id = copy.Id }, new { @class = "btn btn-primary btn-lg" })
+                        @*@Ajax.ActionLink("Return Copy", "AjaxReturn", "MovieCopy", new { id = copy.Id },
+                            new AjaxOptions {
+                                HttpMethod = "Post",
+                                UpdateTargetId = "copiesContinner",
+                                InsertionMode = InsertionMode.Replace,
+                            }, new { @class = "btn btn-primary btn-lg" })*@
                     }
                     else
                     {
-                        @Html.ActionLink("Return Copy", "Return", "MovieCopy", new { id = copy.Id }, new { @class = "btn btn-primary btn-lg disabled" })
+                        @Html.ActionLink("Return Copy", "Return", "MovieCopy", new { id = copy.Id }, new { @class = "btn btn-primary btn-lg" })
+                        @*@Ajax.ActionLink("Return Copy", "AjaxReturn", "MovieCopy", new { id = copy.Id },
+                        new AjaxOptions
+                        {
+                            HttpMethod = "Post",
+                            UpdateTargetId = "copiesContinner",
+                            InsertionMode = InsertionMode.Replace,
+                        },
+                        new { @class = "btn btn-primary btn-lg disabled" })*@
                     }
                 </td>
                 <td>

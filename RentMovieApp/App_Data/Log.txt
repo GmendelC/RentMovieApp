@@ -1,3 +1,16 @@
 Movie 5 create
 Copy 2 rent
 Copy 13 create
+Copy 1 return
+Copy 3 rent
+Copy 3 return
+Movie 6 create
+Copy 14 create
+Copy 15 create
+Copy 16 create
+Copy 17 create
+Copy 14 rent
+Copy 15 remove
+Copy 14 return
+Copy 14 rent
+Copy 14 return
