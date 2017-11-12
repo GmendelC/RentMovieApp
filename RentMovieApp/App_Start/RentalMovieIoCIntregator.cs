@@ -18,7 +18,7 @@ namespace RentMovieApp.App_Start
         public RentalMovieIoCIntregator()
         {
             _IoCIntregator = new UnityContainer();
-            _IoCIntregator.RegisterInstance<string>(@"C:\USERS\COHENFAMILY\DESKTOP\RENTMOVIEAPP\DAL\Log.txt");
+            _IoCIntregator.RegisterInstance<string>("");
             _IoCIntregator.RegisterType<ILoggerStringService, FileStringLogger>();
             _IoCIntregator.RegisterType<IRentalDBService, RentalMovieContext>();
             _IoCIntregator.RegisterType<IUserAutenticationService, MvcUserAutentication>();

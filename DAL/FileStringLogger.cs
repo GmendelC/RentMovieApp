@@ -18,7 +18,7 @@ namespace DAL
             if (string.IsNullOrWhiteSpace(paht))
             {
                 string dataPath = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();
-                Path.Combine(dataPath, "Log.txt");
+                LoggerPath = Path.Combine(dataPath, "Log.txt");
             }
             else
                 LoggerPath = paht;
