@@ -17,3 +17,7 @@ Copy 14 return
 Copy 3 rent
 Copy 3 return
 Copy 4 return
+Copy 10 return
+Copy 18 create
+Copy 18 rent
+Copy 18 return
