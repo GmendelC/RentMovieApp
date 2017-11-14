@@ -22,7 +22,7 @@ namespace RentMovieApp.Controllers
         public ActionResult Login(User user)
         {
             using (var userAutentication = MvcApplication.APP_IOC.UserAutenticationService)
-                if (userAutentication.Login(user))
+                if (userAutentication.Login(ref user))
                     return RedirectToAction("Index", "Home");
                 else
                 {
@@ -48,6 +48,8 @@ namespace RentMovieApp.Controllers
                     return RedirectToAction("Index", "Home");
                 else
                 {
+                    if (ModelState.IsValid)
+                        ModelState.AddModelError("Email", "It mail was register");
                     user.Password = null;
                     user.PasswordConfirm = null;
                     return View(user);
@@ -81,6 +83,8 @@ namespace RentMovieApp.Controllers
                     return RedirectToAction("Index", "Home");
                 else
                 {
+                    if (ModelState.IsValid)
+                        ModelState.AddModelError("Email", "Passowrd not valid");
                     user.Password = null;
                     user.PasswordConfirm = null;
                     user.OldPassord = null;
@@ -102,6 +106,16 @@ namespace RentMovieApp.Controllers
             using (var userAutentication = MvcApplication.APP_IOC.UserAutenticationService)
                 userAutentication.Logout(null);
             return PartialView("_LoginPartial");
+        }
+
+        public ContentResult IsEmptyEmail(string email)
+        {
+            using (var dbManager = MvcApplication.APP_IOC.ManagerRentalDB)
+            {
+
+                bool res = !dbManager.User.Any(u => u.Email == email);
+                return Content(res.ToString());
+            }
         }
 
         private ActionResult RedirectToLocal(string returnUrl)

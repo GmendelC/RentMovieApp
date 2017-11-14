@@ -35,7 +35,7 @@ namespace DAL
                     Debug.WriteLine(ex);
                     return false;
                 }
-                Login(newUser);
+                Login(ref newUser);
                 return true;
             }
             else
@@ -43,26 +43,30 @@ namespace DAL
         }
 
 
-        private bool BaseUserLogin(User user)
+        private bool BaseUserLogin(ref User user)
         {
             if (user == null|| user.Password == null || user.Email == null)
                 return false;
-            
+
+            var email = user.Email;
+
             User dbUser = _dbService.Users
-                .FirstOrDefault(u => u.Email == user.Email);
+                .FirstOrDefault(u => u.Email == email);
             if (dbUser != null)
             {
                 HashUser(user);
+                bool res = user.Password == dbUser.Password;
                 user.ID = dbUser.ID;
-                return user.Password == dbUser.Password;
+                user = dbUser;
+                return res;
             }
             else
                 return false;
         }
 
-        public virtual bool Login(User user)
+        public virtual bool Login(ref User user)
         {
-            return BaseUserLogin(user);
+            return BaseUserLogin(ref user);
         }
 
         public virtual bool Logout(User user)
@@ -74,16 +78,29 @@ namespace DAL
         {
             if (updateUser == null)
                 return false;
+            string email = _dbService.Users
+                .FirstOrDefault(u => u.ID == updateUser.ID).Email;
+            User oldUser = new User { Email =email, Password = updateUser.OldPassord};
 
-            User oldUser = new User { Email = updateUser.Email, Password = updateUser.OldPassord };
-            if (Login(oldUser) && UserVerification(updateUser))
+            if (Login(ref oldUser) && UserVerification(updateUser))
             {
                 HashUser(updateUser);
+                updateUser = UpadateUserNoContex(updateUser, oldUser);
+
                 _dbService.Update(updateUser);
                 return true;
             }
             else
                 return false;
+        }
+
+        private static User UpadateUserNoContex(User updateUser, User oldUser)
+        {
+            oldUser.Email = updateUser.Email;
+            oldUser.Password = updateUser.Password;
+
+            updateUser = oldUser;
+            return updateUser;
         }
 
         protected virtual void HashUser(User newUser)

@@ -14,9 +14,9 @@ namespace RentMovieApp.Models
         public MvcUserAutentication(IRentalDBService rentalDBService) 
             : base(rentalDBService){}
 
-        public override bool Login(User user)
+        public override bool Login(ref User user)
         {
-            bool isRegister = base.Login(user);
+            bool isRegister = base.Login(ref user);
 
             if (isRegister)
             {

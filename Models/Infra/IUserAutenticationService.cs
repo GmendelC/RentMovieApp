@@ -12,7 +12,7 @@ namespace Models.Infra
         bool CreateUser(User newUser);
         bool UpdateUser(User updateUser);
 
-        bool Login(User user);
+        bool Login(ref User user);
         bool Logout(User user);
     }
 }
